@@ -6,6 +6,8 @@
 
 #Para correr mysql:
 # 1.- mysql -uroot
+
+#Para seleccionar todas las palabras iguales es (command + d)
 class galleta:
     def __init__(self, sabor:str):
         self.sabor = sabor
