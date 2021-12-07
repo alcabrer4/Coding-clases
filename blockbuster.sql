@@ -87,7 +87,7 @@ CREATE TABLE Costumer_Rentals(
 );
 
 CREATE TABLE Payment_Methods(
-    payment_method_code BIGINT NOT NULL UNIQUE,
+    payment_method_code BIGINT NOT NULL UNIQUE AUTO_INCREMENT,
     payment_method_description VARCHAR(512) UNIQUE,
     PRIMARY KEY (payment_method_code)
 );
@@ -122,14 +122,43 @@ CREATE TABLE Financial_Transactions(
 );
 
 /* INSERT INTO Tiendas(direccion, telefono, email) VALUES ('casa', 0954, 'hola@mail.com'), 
-('house', 1234, 'adios@mail.com'); */
+('house', 1234, 'adios@mail.com');*/
 
-INSERT INTO Video_Stores(store_adress, store_phone, store_email) VALUES('AV. 16 DE SEPTIEMBRE, 145', 7471500954, 'al.cabrer4@gmail.com'),
-('av. naval militar, 132', 5537162214, 'santigm@gmail.com');
+INSERT INTO Video_Stores(store_adress, store_phone, store_email) 
+VALUES('AV. 16 DE SEPTIEMBRE, 145', 7471500954, 'al.cabrer4@gmail.com'), ('av. naval militar, 132', 5537162214, 'santigm@gmail.com');
 
-INSERT INTO Format_Types(format_type_description) VALUES('vhs'), ('blue ray');
+INSERT INTO Format_Types(format_type_description) 
+VALUES('vhs'), ('blue ray');
 
-INSERT INTO Genres_Codes(genre_description) VALUES('horror'), ('action');
+INSERT INTO Genres_Codes(genre_description) 
+VALUES('horror'), ('action');
 
 INSERT INTO Movies(format_type_code, genre_code, store_id, release_year, movie_title, number_in_stock, rental_daily_rate, sale_price)
-    VALUES(1, 1, 1, 1985, 'Freddie Krueger', 5, 49.99, 199.99)
+VALUES(1, 1, 1, 1985, 'Freddie Krueger', 5, 49.99, 199.99), (2, 2, 2, 2001, 'Mision Imposible', 3, 19.99, 99.99);
+
+INSERT INTO Actors(actor_first_name, actor_last_name, actor_gender) 
+VALUES('Leonardo', 'DiCrapio', 'Male'), ('Tom', 'Cruise', 'Male');
+
+INSERT INTO Movie_Cast(movie_id, actor_id)
+VALUES(1, 1), (2, 2);
+
+INSERT INTO Rental_Status_Codes(rental_status_description)
+VALUES('rented'), ('returned');
+
+INSERT INTO Costumers(costumer_first_name, costumer_last_name, costumer_phone, costumer_email, costumer_address)
+VALUES('Alejandro', 'Cabrera', 7471200222, 'al.cabrer4@icloud.com', 'Escorpion, 12'), ('Victor', 'Garcia', 5567890123, 'vicgrv@gmail.com', 'Jalapa, 33');
+
+INSERT INTO Costumer_Rentals(costumer_id, movie_id, rental_status_code, rental_date_out, rental_date_returned, rental_amount_due)
+VALUES(1, 1, 1, '2021-12-03', '2021-12-07', 195), (2, 2, 2, '2020-12-10', '2020-12-20', 195);
+
+INSERT INTO Payment_Methods(payment_method_description)
+VALUES('VISA'), ('MASTERCARD'), ('AMEX'), ('CASH'), ('DEBIT');
+
+INSERT INTO Accounts(costumer_id, payment_method_code, account_name)
+VALUES(1, 1, 'a1s2d3'), (2, 2, 'q0w9e8');
+
+INSERT INTO Transaction_Types(transaction_type_description)
+VALUES('payment'), ('refund');
+
+INSERT INTO Financial_Transactions(account_id, item_rental_id, transaction_type_code, transaction_date, transaction_ammount)
+VALUES(1, 1, 2, '2021-12-06', -195), (2, 2, 1, '2020-12-20', 195);
