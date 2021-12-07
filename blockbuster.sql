@@ -4,7 +4,7 @@ CREATE DATABASE BLOCKBUSTER;
 
 USE BLOCKBUSTER;
 
-CREATE TABLE Videos_Stores(
+CREATE TABLE Video_Stores(
     store_id BIGINT NOT NULL AUTO_INCREMENT,
     store_adress VARCHAR(512) UNIQUE,
     store_phone BIGINT UNIQUE,
@@ -37,7 +37,7 @@ CREATE TABLE Movies(
     PRIMARY KEY (movie_id),
     FOREIGN KEY (format_type_code) REFERENCES Format_Types(format_type_code),
     FOREIGN KEY (genre_code) REFERENCES Genres_Codes(genre_code),
-    FOREIGN KEY (store_id) REFERENCES Videos_Stores(store_id)
+    FOREIGN KEY (store_id) REFERENCES Video_Stores(store_id)
 );
 
 CREATE TABLE Actors(
@@ -99,7 +99,7 @@ CREATE TABLE Accounts(
     account_name VARCHAR(512) UNIQUE,
     PRIMARY KEY (account_id),
     FOREIGN KEY (costumer_id) REFERENCES Costumers(costumer_id),
-    FOREIGN KEY (payment_method_code) Payment_Methods(payment_method_code)
+    FOREIGN KEY (payment_method_code) REFERENCES Payment_Methods(payment_method_code)
 );
 
 CREATE TABLE Transaction_Types(
@@ -124,4 +124,12 @@ CREATE TABLE Financial_Transactions(
 /* INSERT INTO Tiendas(direccion, telefono, email) VALUES ('casa', 0954, 'hola@mail.com'), 
 ('house', 1234, 'adios@mail.com'); */
 
+INSERT INTO Video_Stores(store_adress, store_phone, store_email) VALUES('AV. 16 DE SEPTIEMBRE, 145', 7471500954, 'al.cabrer4@gmail.com'),
+('av. naval militar, 132', 5537162214, 'santigm@gmail.com');
 
+INSERT INTO Format_Types(format_type_description) VALUES('vhs'), ('blue ray');
+
+INSERT INTO Genres_Codes(genre_description) VALUES('horror'), ('action');
+
+INSERT INTO Movies(format_type_code, genre_code, store_id, release_year, movie_title, number_in_stock, rental_daily_rate, sale_price)
+    VALUES(1, 1, 1, 1985, 'Freddie Krueger', 5, 49.99, 199.99)
